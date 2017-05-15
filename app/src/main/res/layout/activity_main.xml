@@ -20,7 +20,15 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:text="+"
+        android:id="@+id/button_addMeal"
         android:layout_below="@id/barGraph"/>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listview_food"
+        android:layout_below="@id/button_addMeal"
+        android:background="#efefef"
+        />
 
 </RelativeLayout>
