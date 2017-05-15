@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.Locale;
 
 import static android.R.attr.name;
@@ -78,8 +82,11 @@ public class DBHandler {
         public final static String TABLE_NAME_FOOD = "food";
         public final static String TABLE_NAME_MEAL = "meal";
 
+        private final Context context;
+
         public DBHelper(Context context) {
             super(context, DB_NAME, null, DB_VERSION);
+            this.context = context;
         }
 
         @Override
@@ -98,6 +105,19 @@ public class DBHandler {
                             "FOREIGN KEY(food_id) REFERENCES food(_id)" +
                     ")");
 
+            InputStream inputStream =  context.getResources().openRawResource(R.raw.db);
+
+            BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+
+            String line;
+
+            try {
+                while ((line = r.readLine()) != null) {
+                    db.execSQL(line);
+                }
+            } catch (IOException e) {
+
+            }
 
         }
 
