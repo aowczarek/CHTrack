@@ -13,16 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Created by kilgore on 2017. 05. 13..
- */
-
 public class BarGraph extends View {
 
     protected final static int MAX_VALUES = 25;
     protected List<Float> values;
 
-    protected Path line;
     protected Paint paint;
 
     public BarGraph(Context context) {
@@ -57,7 +52,6 @@ public class BarGraph extends View {
             this.values.add(r.nextFloat());
         }
 
-        this.line = new Path();
         this.paint = new Paint();
         this.paint.setColor(Color.parseColor("#303F9F"));
         this.paint.setStyle(Paint.Style.STROKE);
@@ -84,17 +78,19 @@ public class BarGraph extends View {
         float heightStep = widthStep;
         float heightOffset = height >> 1;
 
-        paint.setStrokeWidth(widthStep-2);
+
 
 
         for (int i = 1; i < MAX_VALUES; i++){
 
             float x = i * widthStep;
-            canvas.drawLine(x, height, x, values.get(i)*heightOffset, paint);
+
+            paint.setStrokeWidth(widthStep-2);
+            canvas.drawLine(x, height-20, x, values.get(i)*heightOffset, paint);
+            paint.setStrokeWidth(1);
+            canvas.drawText(Integer.toString(i), x-widthStep/4, height, paint);
 
         }
-
-        canvas.drawPath(line, paint);
     }
 
 
