@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context="com.example.kilgore.chtrack.DetailsActivity">
+
+    <TextView
+        android:id="@+id/namelabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="Name:" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/namelabel"
+        android:text="Name of food"
+        android:textSize="18sp"
+        android:textAlignment="textEnd"
+        android:gravity="end"/>
+
+    <TextView
+        android:id="@+id/chlabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/namelabel"
+        android:layout_margin="10dp"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:text="CH content [/100g]:" />
+
+    <TextView
+        android:id="@+id/ch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/chlabel"
+        android:text="content of CH"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/name" />
+
+    <TextView
+        android:id="@+id/quantitylabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/chlabel"
+        android:layout_alignParentStart="true"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:text="Quantity [g]:" />
+
+    <android.support.v7.widget.AppCompatEditText
+        android:id="@+id/quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/quantitylabel"
+        android:layout_margin="10dp"
+        android:textAlignment="textEnd"
+        android:inputType="numberDecimal"
+        android:layout_below="@+id/ch" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/quantity"
+        android:layout_alignParentEnd="true"
+        android:text="Add"/>
+
+
+</RelativeLayout>

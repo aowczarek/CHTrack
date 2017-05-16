@@ -44,7 +44,7 @@ public class DBActivity extends AppCompatActivity {
 
         while ( !cursor.isAfterLast()){
 
-            int id = cursor.getInt(0);
+            Long id = cursor.getLong(0);
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String carb = cursor.getString(cursor.getColumnIndex("carb"));
 
@@ -67,7 +67,7 @@ public class DBActivity extends AppCompatActivity {
 
                 while ( !cursor.isAfterLast()){
 
-                    int id = cursor.getInt(0);
+                    Long id = cursor.getLong(0);
                     String name = cursor.getString(cursor.getColumnIndex("name"));
                     String carb = cursor.getString(cursor.getColumnIndex("carb"));
 
@@ -108,7 +108,7 @@ public class DBActivity extends AppCompatActivity {
 
                 Food selected = (Food) adapter.getItem(position);
 
-                Intent intent = new Intent(DBActivity.this, MainActivity.class);
+                Intent intent = new Intent(DBActivity.this, DetailsActivity.class);
 
                 intent.putExtra("selected", selected);
                 startActivity(intent);
