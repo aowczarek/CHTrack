@@ -5,13 +5,10 @@ import android.database.Cursor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class BarGraph extends View {
@@ -39,11 +36,6 @@ public class BarGraph extends View {
         super(context, attrs, defStyleAttr);
         init();
     }
-
-//    public BarGraph(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
-//        super(context, attrs, defStyleAttr, defStyleRes);
-//        init();
-//    }
 
     protected void init() {
 
@@ -75,12 +67,12 @@ public class BarGraph extends View {
         float widthStep = width / (MAX_VALUES + 1);
         float heightStep = height / MAX_CARB;
 
-        Cursor cursor = dbHandler.readMeal();
-
         for (int i = 0; i < MAX_VALUES; i++){
 
             this.values[i] = 0.0f;
         }
+
+        Cursor cursor = dbHandler.readMeal();
 
         while ( !cursor.isAfterLast()){
 

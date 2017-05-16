@@ -1,13 +1,16 @@
 package com.example.kilgore.chtrack;
 
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -97,6 +100,21 @@ public class DBActivity extends AppCompatActivity {
                 }
                 return handled;
             }
+        });
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Food selected = (Food) adapter.getItem(position);
+
+                Intent intent = new Intent(DBActivity.this, MainActivity.class);
+
+                intent.putExtra("selected", selected);
+                startActivity(intent);
+            };
+
+
         });
     }
 

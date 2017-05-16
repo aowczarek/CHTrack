@@ -9,26 +9,23 @@
     tools:context="com.example.kilgore.chtrack.MainActivity"
     android:orientation="vertical">
 
-
-
     <com.example.kilgore.chtrack.BarGraph
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/barGraph"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Add meal"
-        android:id="@+id/button_addMeal"/>
+    <!--<Button-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:text="Add meal"-->
+        <!--android:id="@+id/button_addMeal"/>-->
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Browse Food DB"
+        android:text="@string/browse_food_db"
         android:id="@+id/button_browseDB"/>
 
 </LinearLayout>

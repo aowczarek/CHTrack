@@ -12,7 +12,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Locale;
 
-import static android.R.attr.name;
 import static com.example.kilgore.chtrack.DBHandler.DBHelper.TABLE_NAME_FOOD;
 import static com.example.kilgore.chtrack.DBHandler.DBHelper.TABLE_NAME_MEAL;
 

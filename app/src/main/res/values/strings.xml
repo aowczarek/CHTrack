@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">CHTrack</string>
+    <string name="browse_food_db">Browse Food DB</string>
 </resources>
