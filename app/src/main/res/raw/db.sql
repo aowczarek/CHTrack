@@ -345,3 +345,8 @@ INSERT INTO FOOD(name, carb) VALUES('Búzakeményítő', 82.5);
 INSERT INTO FOOD(name, carb) VALUES('Kukoricapehely', 83);
 INSERT INTO FOOD(name, carb) VALUES('Burgonyakeményítő', 83.1);
 INSERT INTO FOOD(name, carb) VALUES('Barnacukor', 97.4);
+INSERT INTO MEAL(timestamp, food_id, quantity) VALUES(DateTime('now'), 3, 40);
+INSERT INTO MEAL(timestamp, food_id, quantity) VALUES(DateTime('now', '-1 day'), 4, 80);
+INSERT INTO MEAL(timestamp, food_id, quantity) VALUES(DateTime('now', '-23 hours'), 5, 30);
+INSERT INTO MEAL(timestamp, food_id, quantity) VALUES(DateTime('now', '-10 hours'), 6, 70);
+INSERT INTO MEAL(timestamp, food_id, quantity) VALUES(DateTime('now', '-25 hours'), 7, 20);
