@@ -47,11 +47,11 @@ public class MainActivity extends AppCompatActivity {
 
         while ( !cursor.isAfterLast()){
 
-            long id = cursor.getLong(0);
+            int id = cursor.getInt(0);
             String name = cursor.getString(cursor.getColumnIndex("name"));
             String carb = cursor.getString(cursor.getColumnIndex("carb"));
 
-            items.add(new Food(name, Float.parseFloat(carb)));
+            items.add(new Food(id, name, Float.parseFloat(carb)));
 
             cursor.moveToNext();
         }
