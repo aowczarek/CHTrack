@@ -6,7 +6,10 @@
     <EditText
         android:id="@+id/search"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:maxLines="1"
+        android:imeOptions="actionDone">
     </EditText>
 
     <ListView
@@ -14,5 +17,6 @@
         android:layout_height="match_parent"
         android:id="@+id/listview_food"
         android:background="#efefef"
+
         />
 </LinearLayout>
