@@ -31,12 +31,4 @@
         android:text="Browse Food DB"
         android:id="@+id/button_browseDB"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview_food"
-        android:layout_weight="1"
-        android:background="#efefef"
-        />
-
 </LinearLayout>
