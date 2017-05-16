@@ -14,6 +14,7 @@ import java.util.Locale;
 
 import static android.R.attr.name;
 import static com.example.kilgore.chtrack.DBHandler.DBHelper.TABLE_NAME_FOOD;
+import static com.example.kilgore.chtrack.DBHandler.DBHelper.TABLE_NAME_MEAL;
 
 public class DBHandler {
 
@@ -67,11 +68,28 @@ public class DBHandler {
     public void createMeal(Meal meal){
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put("name", name);
-        //values.put("carb", carb);
-        db.insert(TABLE_NAME_FOOD, null, values);
+
+        ContentValues cv = new ContentValues();
+
+        cv.put("timestamp", "Datetime(now)");
+        cv.put("food_id", meal.getFood().getId());
+        cv.put("quantity", meal.getQuantity());
+
+        db.insert(TABLE_NAME_FOOD, null, cv);
         db.close();
+    }
+
+    public Cursor readMeal(){
+
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT strftime('%H', timestamp) as hour, quantity FROM " + TABLE_NAME_MEAL +
+                                    " WHERE timestamp > datetime('now', '-1 day')", null);
+
+        cursor.moveToFirst();
+
+        db.close();
+        return cursor;
     }
 
 
@@ -118,6 +136,8 @@ public class DBHandler {
             } catch (IOException e) {
 
             }
+
+
 
         }
 
