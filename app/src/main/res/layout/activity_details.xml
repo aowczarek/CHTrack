@@ -95,28 +95,14 @@
 
     </android.support.v7.widget.LinearLayoutCompat>
 
-    <android.support.v7.widget.LinearLayoutCompat
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_below="@id/quantity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttons"
-        android:orientation="vertical"
-        android:layout_below="@id/quantity"
-        android:layout_alignParentBottom="true">
+        android:text="Add meal" />
 
-        <Button
-            android:id="@+id/buttonAdd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add meal" />
 
-        <Button
-            android:id="@+id/buttonEdit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/buttonAdd"
-            android:text="Edit values"/>
-
-    </android.support.v7.widget.LinearLayoutCompat>
 
 
 

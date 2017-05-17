@@ -1,16 +1,13 @@
 package com.example.kilgore.chtrack;
 
 
-import android.graphics.Bitmap;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Locale;
@@ -18,7 +15,7 @@ import java.util.Locale;
 public class DetailsActivity extends AppCompatActivity {
 
     EditText editTextName, editTextCH, editTextQuantity;
-    Button buttonAdd, buttonEdit;
+    Button buttonAdd;
 
     Food selectedFood;
 
@@ -36,7 +33,6 @@ public class DetailsActivity extends AppCompatActivity {
         editTextQuantity = (EditText) findViewById(R.id.quantityValue);
 
         buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        buttonEdit = (Button) findViewById(R.id.buttonEdit);
 
         editTextQuantity.requestFocus();
 
@@ -58,43 +54,42 @@ public class DetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String name =  editTextName.getText().toString().trim();
-                String carb =  editTextCH.getText().toString().trim();
-                String quantity = editTextQuantity.getText().toString().trim();
+                final String name =  editTextName.getText().toString().trim();
+                final String carb =  editTextCH.getText().toString().trim();
+                final String quantity = editTextQuantity.getText().toString().trim();
 
                 if (name.isEmpty() || carb.isEmpty() || quantity.isEmpty()) {
                     Toast.makeText(DetailsActivity.this, "No empty values allowed", Toast.LENGTH_SHORT).show();
                 }
+                else {
 
-//                if (!name.equalsIgnoreCase(selectedFood.getName())){
-//
-//                }
-//
-//                if(!carb.equalsIgnoreCase(selectedFood.getCarb().toString())){
-//
-//                }
+                    if (!name.equalsIgnoreCase(selectedFood.getName()) || Float.parseFloat(carb) != selectedFood.getCarb()) {
 
-                else{
-                    db.createMeal(new Meal(name, selectedFood, Float.parseFloat(quantity)));
-                }
-            }
-        });
+                        AlertDialog.Builder ab = new AlertDialog.Builder(DetailsActivity.this);
 
-        buttonEdit.setOnClickListener(new View.OnClickListener(){
+                        ab.setTitle("Food info changed");
+                        ab.setMessage("Do you really want to change name and/or CH values for this food?");
 
-            @Override
-            public void onClick(View v) {
+                        ab.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 
-                String name =  editTextName.getText().toString().trim();
-                String carb =  editTextCH.getText().toString().trim();
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                if (name.isEmpty() || carb.isEmpty()) {
-                    Toast.makeText(DetailsActivity.this, "No empty values allowed", Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    db.updateFood(selectedFood.getId(), name, Float.parseFloat(carb));
-                    Toast.makeText(DetailsActivity.this, "Food info updated", Toast.LENGTH_SHORT).show();
-                    finish();
+                                db.updateFood(selectedFood.getId(), name, Float.parseFloat(carb));
+                                Toast.makeText(DetailsActivity.this, "Food saved", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                        ab.setNegativeButton("Cancel", null);
+                        ab.show();
+
+                    }
+                    else {
+
+                        db.createMeal(new Meal(name, selectedFood, Float.parseFloat(quantity)));
+                        Toast.makeText(DetailsActivity.this, "Meal saved", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 }
             }
         });
