@@ -79,7 +79,7 @@ public class BarGraph extends View {
             Float quantity = cursor.getFloat(cursor.getColumnIndex("quantity"));
             int hour = cursor.getInt(cursor.getColumnIndex("hour"));
 
-            values[hour] = quantity;
+            values[hour] += quantity;
 
             cursor.moveToNext();
         }

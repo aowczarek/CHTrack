@@ -83,7 +83,7 @@ public class DBHandler {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor cursor = db.rawQuery("SELECT strftime('%H', timestamp) as hour, quantity FROM " + TABLE_NAME_MEAL +
-                                    " WHERE timestamp > datetime('now', '-1 day')", null);
+                                    " WHERE timestamp > datetime('now', 'start of day')", null);
 
         cursor.moveToFirst();
 
