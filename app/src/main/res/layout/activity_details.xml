@@ -30,7 +30,8 @@
             android:maxLines="1"
             android:textSize="18sp"
             android:layout_margin="10dp"
-            android:textAlignment="textEnd"/>
+            android:textAlignment="textEnd"
+            android:background="@android:color/transparent"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -59,7 +60,9 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:textAlignment="textEnd"
-            android:layout_below="@+id/name" />
+            android:layout_below="@+id/name"
+            android:inputType="numberDecimal"
+            android:background="@android:color/transparent"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -87,7 +90,8 @@
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:textAlignment="textEnd"
-            android:inputType="numberDecimal"/>
+            android:inputType="numberDecimal"
+            />
 
     </android.support.v7.widget.LinearLayoutCompat>
 
@@ -103,7 +107,7 @@
             android:id="@+id/buttonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add" />
+            android:text="Add meal" />
 
         <Button
             android:id="@+id/buttonEdit"

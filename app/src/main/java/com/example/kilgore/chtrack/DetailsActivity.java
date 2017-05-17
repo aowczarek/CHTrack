@@ -38,7 +38,7 @@ public class DetailsActivity extends AppCompatActivity {
         buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonEdit = (Button) findViewById(R.id.buttonEdit);
 
-        buttonAdd.setEnabled(false);
+        editTextQuantity.requestFocus();
 
         Bundle bundle  = getIntent().getExtras();
 
@@ -64,7 +64,6 @@ public class DetailsActivity extends AppCompatActivity {
 
                 if (name.isEmpty() || carb.isEmpty() || quantity.isEmpty()) {
                     Toast.makeText(DetailsActivity.this, "No empty values allowed", Toast.LENGTH_SHORT).show();
-                    return;
                 }
 
 //                if (!name.equalsIgnoreCase(selectedFood.getName())){
@@ -97,27 +96,6 @@ public class DetailsActivity extends AppCompatActivity {
                     Toast.makeText(DetailsActivity.this, "Food info updated", Toast.LENGTH_SHORT).show();
                     finish();
                 }
-            }
-        });
-
-        editTextName.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // if length greater then 1 enable the button else disable it here
-                buttonAdd.setEnabled(true);
-                // TODO Auto-generated method stub
             }
         });
     }
