@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">CHTrack</string>
     <string name="browse_food_db">Browse Food DB</string>
+    <string name="grams_consumed_today">grams consumed today:</string>
 </resources>

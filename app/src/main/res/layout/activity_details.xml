@@ -27,6 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/nameLabel"
+            android:maxLines="1"
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:textAlignment="textEnd"/>
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/chLabel"
+            android:maxLines="1"
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:textAlignment="textEnd"
@@ -81,6 +83,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/quantityLabel"
+            android:maxLines="1"
             android:textSize="18sp"
             android:layout_margin="10dp"
             android:textAlignment="textEnd"
@@ -108,13 +111,6 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/buttonAdd"
             android:text="Edit values"/>
-
-        <Button
-            android:id="@+id/buttonDelete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/buttonEdit"
-            android:text="Remove from DB"/>
 
     </android.support.v7.widget.LinearLayoutCompat>
 

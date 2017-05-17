@@ -15,14 +15,21 @@
         android:layout_weight="1"
         android:id="@+id/barGraph"/>
 
-    <!--<Button-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:text="Add meal"-->
-        <!--android:id="@+id/button_addMeal"/>-->
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:text="@string/grams_consumed_today"
+        />
 
-
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/totalCH"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="36sp"
+        android:textAlignment="center"
+        />
 
     <Button
         android:layout_width="match_parent"

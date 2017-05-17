@@ -10,6 +10,7 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.Random;
+import java.util.regex.Pattern;
 
 public class BarGraph extends View {
 
@@ -51,6 +52,7 @@ public class BarGraph extends View {
         this.paint.setColor(Color.parseColor("#303F9F"));
         this.paint.setStyle(Paint.Style.STROKE);
         this.paint.setStrokeWidth(1);
+        this.paint.setTextSize(10);
         this.paint.setAntiAlias(true);
 
         dbHandler = new DBHandler(this.getContext());
@@ -86,27 +88,43 @@ public class BarGraph extends View {
         int width = getWidth();
         int height = getHeight();
 
-        maxCH = maxCH > height ? height : maxCH;
+        maxCH = maxCH > height ? height + 1 : maxCH;
 
         float widthStep = width / (MAX_VALUES + 1);
-        float heightStep = height / maxCH;
+        float heightStep = (height / maxCH) - 1;
 
-        canvas.drawLine(0, height-20, width, height-20, paint);
+        float y0 = height - 10;
+
+        // X axis
+        canvas.drawLine(0, y0, width, y0, paint);
+
+        // horizontal lines
+        for(int i = (int)y0; i > 0; i-= heightStep * 10){
+            canvas.drawLine(0, i, width, i, paint);
+        }
 
         for (int i = 0; i < MAX_VALUES; i++){
 
             float x = widthStep + i * widthStep;
 
-            paint.setStrokeWidth(widthStep-2);
-            canvas.drawLine(x, height - 20, x, height - 20 - (values[i] * heightStep), paint);
+            // Bar
+            paint.setStrokeWidth(widthStep - 2);
+            canvas.drawLine(x, y0, x, y0 - (values[i] * heightStep), paint);
 
+            // Tick on x axis
             paint.setStrokeWidth(1);
-            canvas.drawLine(x, height-20, x, height-30, paint);
+            canvas.drawLine(x, y0, x, y0 - 10, paint);
 
-            paint.setTextSize(10);
+            // x value text
             String xT = Integer.toString(i);
-            canvas.drawText(xT, x - (paint.measureText(xT))/2, height, paint);
+            canvas.drawText(xT, x - (paint.measureText(xT)) / 2, height, paint);
 
+            // y value text
+            if(values[i] > 0){
+
+                String yT = values[i].toString();
+                canvas.drawText(yT, x - (paint.measureText(yT)) / 2, y0 - 5 - (values[i] * heightStep), paint);
+            }
         }
     }
 

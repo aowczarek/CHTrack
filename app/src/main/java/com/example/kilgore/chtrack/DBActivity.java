@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,24 +24,34 @@ public class DBActivity extends AppCompatActivity {
 
     FoodListAdapter adapter;
     DBHandler dbHandler;
+    ListView listview;
 
     EditText editTextSearch;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        adapter.notifyDataSetChanged();
+        listview.invalidateViews();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_db);
 
-        ListView listview = (ListView) findViewById(R.id.listview_food);
+        listview = (ListView) findViewById(R.id.listview_food);
         editTextSearch = (EditText) findViewById(R.id.search);
+
+        final List<Food> items = new ArrayList<>();
+        items.clear();
+
+        adapter = new FoodListAdapter(items);
+        listview.setAdapter(adapter);
 
         dbHandler = new DBHandler(this);
         Cursor cursor = dbHandler.readFood();
-
-        final List<Food> items = new ArrayList<>();
-        adapter = new FoodListAdapter(items);
-        listview.setAdapter(adapter);
-        items.clear();
 
         while ( !cursor.isAfterLast()){
 
@@ -52,8 +63,6 @@ public class DBActivity extends AppCompatActivity {
 
             cursor.moveToNext();
         }
-
-        adapter.notifyDataSetChanged();
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
 

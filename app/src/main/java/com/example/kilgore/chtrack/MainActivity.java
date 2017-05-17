@@ -5,20 +5,24 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button buttonAddMeal, buttonBrowseDB;
+    BarGraph barGraph;
+    Button buttonBrowseDB;
+    TextView textViewTotalCH;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        buttonAddMeal = (Button) findViewById(R.id.button_addMeal);
+        barGraph = (BarGraph) findViewById(R.id.barGraph);
         buttonBrowseDB = (Button) findViewById(R.id.button_browseDB);
-
-        BarGraph barGraph = (BarGraph) findViewById(R.id.barGraph);
+        textViewTotalCH = (TextView) findViewById(R.id.totalCH);
 
         buttonBrowseDB.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,7 +32,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        DBHandler db = new DBHandler(this);
+
+        textViewTotalCH.setText(String.format(Locale.getDefault(), "%.2f", db.getTotalCHToday()));
 
     }
 }
