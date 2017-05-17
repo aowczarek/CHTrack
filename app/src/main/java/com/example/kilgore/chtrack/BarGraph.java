@@ -118,14 +118,19 @@ public class BarGraph extends View {
             String xT = Integer.toString(i);
             canvas.drawText(xT, x - (paint.measureText(xT)) / 2, height, paint);
 
-            // y value text
-            if(values[i] > 0){
+            String yT = values[i].toString();
 
-                String yT = values[i].toString();
-                canvas.drawText(yT, x - (paint.measureText(yT)) / 2, y0 - 5 - (values[i] * heightStep), paint);
+            // y value text
+            if(values[i] > paint.measureText(yT)){
+
+                canvas.save();
+                paint.setColor(Color.WHITE);
+                canvas.rotate(-90, x + widthStep/4, y0);
+                canvas.drawText(yT, x + (values[i] * heightStep)/2, y0, paint);
+                canvas.restore();
+                paint.setColor(Color.parseColor("#303F9F"));
+                
             }
         }
     }
-
-
 }
