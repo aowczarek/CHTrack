@@ -12,12 +12,17 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DBActivity"></activity>
-        <activity android:name=".DetailsActivity"></activity>
+        <activity android:name=".DBActivity"
+            android:label="Browse DB"
+            android:parentActivityName="com.example.kilgore.chtrack.MainActivity"
+            />
+        <activity android:name=".DetailsActivity"
+            android:label="Food details"
+            android:parentActivityName="com.example.kilgore.chtrack.MainActivity"
+            />
     </application>
 
 </manifest>
