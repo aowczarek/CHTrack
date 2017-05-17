@@ -10,7 +10,6 @@ import android.util.AttributeSet;
 import android.view.View;
 
 import java.util.Random;
-import java.util.regex.Pattern;
 
 public class BarGraph extends View {
 
