@@ -70,11 +70,11 @@ public class DBHandler {
 
         ContentValues cv = new ContentValues();
 
-        cv.put("timestamp", "Datetime(now)");
         cv.put("food_id", meal.getFood().getId());
         cv.put("quantity", meal.getQuantity());
 
         db.insert(TABLE_NAME_MEAL, null, cv);
+
         db.close();
     }
 
@@ -82,8 +82,9 @@ public class DBHandler {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT strftime('%H', timestamp) as hour, quantity FROM " + TABLE_NAME_MEAL +
-                                    " WHERE timestamp > datetime('now', 'start of day')", null);
+        Cursor cursor = db.rawQuery(" SELECT strftime('%H', datetime(timestamp, 'localtime')) as hour, quantity / 100 * carb as consumed " +
+                                    " FROM " + TABLE_NAME_MEAL + " LEFT JOIN " + TABLE_NAME_FOOD + " ON FOOD._id = MEAL.food_id " +
+                                    " WHERE datetime(timestamp, 'localtime') > datetime('now', 'localtime', 'start of day')", null);
 
         cursor.moveToFirst();
 
@@ -116,7 +117,7 @@ public class DBHandler {
 
             db.execSQL("CREATE TABLE " + TABLE_NAME_MEAL + "(" +
                             "_id        INTEGER PRIMARY KEY, " +
-                            "timestamp  TIMESTAMP, " +
+                            "timestamp  TIMESTAMP DEFAULT CURRENT_TIMESTAMP, " +
                             "food_id    INTEGER NOT NULL, " +
                             "quantity   REAL NOT NULL, " +
                             "FOREIGN KEY(food_id) REFERENCES food(_id)" +
