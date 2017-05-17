@@ -74,7 +74,7 @@ public class DBHandler {
         cv.put("food_id", meal.getFood().getId());
         cv.put("quantity", meal.getQuantity());
 
-        db.insert(TABLE_NAME_FOOD, null, cv);
+        db.insert(TABLE_NAME_MEAL, null, cv);
         db.close();
     }
 
