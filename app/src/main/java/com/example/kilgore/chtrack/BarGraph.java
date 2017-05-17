@@ -14,7 +14,6 @@ import java.util.Random;
 public class BarGraph extends View {
 
     protected final static int MAX_VALUES = 24;
-    protected final static int MAX_CARB = 160;
     protected Float[] values;
 
     protected DBHandler dbHandler;
@@ -51,7 +50,7 @@ public class BarGraph extends View {
         this.paint = new Paint();
         this.paint.setColor(Color.parseColor("#303F9F"));
         this.paint.setStyle(Paint.Style.STROKE);
-        this.paint.setStrokeWidth(5);
+        this.paint.setStrokeWidth(1);
         this.paint.setAntiAlias(true);
 
         dbHandler = new DBHandler(this.getContext());
@@ -61,18 +60,14 @@ public class BarGraph extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        int width = getWidth();
-        int height = getHeight();
-
-        float widthStep = width / (MAX_VALUES + 1);
-        float heightStep = height / MAX_CARB;
-
         for (int i = 0; i < MAX_VALUES; i++){
 
             this.values[i] = 0.0f;
         }
 
         Cursor cursor = dbHandler.readMeal();
+
+        Float maxCH = 1f;
 
         while ( !cursor.isAfterLast()){
 
@@ -81,18 +76,36 @@ public class BarGraph extends View {
 
             values[hour] += consumed;
 
+            if (values[hour] > maxCH){
+                maxCH = values[hour];
+            }
+
             cursor.moveToNext();
         }
+
+        int width = getWidth();
+        int height = getHeight();
+
+        maxCH = maxCH > height ? height : maxCH;
+
+        float widthStep = width / (MAX_VALUES + 1);
+        float heightStep = height / maxCH;
+
+        canvas.drawLine(0, height-20, width, height-20, paint);
 
         for (int i = 0; i < MAX_VALUES; i++){
 
             float x = widthStep + i * widthStep;
 
             paint.setStrokeWidth(widthStep-2);
-
             canvas.drawLine(x, height - 20, x, height - 20 - (values[i] * heightStep), paint);
+
             paint.setStrokeWidth(1);
-            canvas.drawText(Integer.toString(i), x-widthStep/4, height, paint);
+            canvas.drawLine(x, height-20, x, height-30, paint);
+
+            paint.setTextSize(10);
+            String xT = Integer.toString(i);
+            canvas.drawText(xT, x - (paint.measureText(xT))/2, height, paint);
 
         }
     }
