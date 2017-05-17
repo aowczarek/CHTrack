@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Locale;
 import java.util.Random;
 
 public class BarGraph extends View {
@@ -118,18 +119,18 @@ public class BarGraph extends View {
             String xT = Integer.toString(i);
             canvas.drawText(xT, x - (paint.measureText(xT)) / 2, height, paint);
 
-            String yT = values[i].toString();
+            String yT = String.format(Locale.getDefault(), "%.2f", values[i]);
 
             // y value text
-            if(values[i] > paint.measureText(yT)){
+            if((values[i] * heightStep) > paint.measureText(yT)){
 
                 canvas.save();
                 paint.setColor(Color.WHITE);
                 canvas.rotate(-90, x + widthStep/4, y0);
-                canvas.drawText(yT, x + (values[i] * heightStep)/2, y0, paint);
+                canvas.drawText(yT, x + (values[i] * heightStep) / 2 - paint.measureText(yT) / 2, y0, paint);
                 canvas.restore();
                 paint.setColor(Color.parseColor("#303F9F"));
-                
+
             }
         }
     }
